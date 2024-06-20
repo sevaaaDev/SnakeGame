@@ -1,20 +1,23 @@
-export class PubSub {
+class PubSub {
   constructor() {
-    this.subscribers = [];
+    this.listener = [];
   }
 
-  subscribe(event, cb) {
-    if (this.subscribers[event]) {
-      this.subscribers[event].push(cb);
+  listen(event, cb) {
+    if (this.listener[event]) {
+      this.listener[event].push(cb);
       return;
     }
-    this.subscribers[event] = [cb];
+    this.listener[event] = [cb];
   }
 
   publish(event, data) {
-    if (this.subscribers[event]) {
-      this.subscribers[event].forEach((func) => func(data));
+    if (this.listener[event]) {
+      this.listener[event].forEach((func) => func(data));
       return;
     }
   }
 }
+
+const radio = new PubSub();
+export default radio;
