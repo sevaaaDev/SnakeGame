@@ -6,8 +6,14 @@ class SnakeBody {
 }
 
 class Snake {
-  constructor() {
+  constructor(autoLength) {
     this.body = [];
+    if (autoLength) {
+      this.addLength([3, 0]);
+      for (let i = 0; i < 2; i++) {
+        this.addLength();
+      }
+    }
   }
 
   addLength(direction, coordinate) {
