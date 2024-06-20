@@ -53,6 +53,7 @@ class Game {
   }
 
   reset() {
+    this.stop();
     this.snake = new Snake();
     this.resetScore();
     this.generateFruitCoordinate(this.snake.body);
