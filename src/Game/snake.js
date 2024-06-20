@@ -40,12 +40,11 @@ class Snake {
     this.body.push(new SnakeBody(direction, coordinate));
   }
 
-  move(fruitCoordinate) {
+  move() {
     for (let snakeBody of this.body) {
       let tmpCoordinate = [...snakeBody.coordinate];
       switch (snakeBody.direction) {
         case "right":
-          // TODO: check for wall ,itself, or fruit
           tmpCoordinate[0]++;
           break;
         case "left":
@@ -58,19 +57,8 @@ class Snake {
           tmpCoordinate[1]--;
           break;
       }
-      if (this.#checkForWall(tmpCoordinate)) return "game over";
-      if (this.#checkForHittingItself(tmpCoordinate)) return "hitting itself";
       snakeBody.coordinate = [...tmpCoordinate];
     }
-    if (
-      this.body[0].coordinate[0] === fruitCoordinate[0] &&
-      this.body[0].coordinate[1] === fruitCoordinate[1]
-    ) {
-      // TODO: publish event eat fruit
-      this.addLength();
-      return "eat fruit";
-    }
-
     // change direction
     for (let i = this.length - 1; i > 0; i--) {
       this.body[i].direction = this.body[i - 1].direction;
@@ -79,22 +67,6 @@ class Snake {
 
   get length() {
     return this.body.length;
-  }
-  #checkForWall(coordinate) {
-    if (coordinate[0] > 9 || coordinate[0] < 0) return true;
-    if (coordinate[1] > 9 || coordinate[1] < 0) return true;
-    return false;
-  }
-
-  #checkForHittingItself(coordinate) {
-    for (let snakeBody of this.body) {
-      if (
-        snakeBody.coordinate[0] === coordinate[0] &&
-        snakeBody.coordinate[1] === coordinate[1]
-      )
-        return true;
-    }
-    return false;
   }
 }
 
