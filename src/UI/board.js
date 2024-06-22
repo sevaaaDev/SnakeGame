@@ -1,6 +1,6 @@
 export default class Board {
   constructor() {}
-  render(data) {
+  render() {
     const board = document.querySelector(".board");
     for (let y = 9; y >= 0; y--) {
       for (let x = 0; x < 15; x++) {
@@ -11,11 +11,16 @@ export default class Board {
       }
     }
   }
-  update([head, tail]) {
+  update([head, tail, fruit]) {
+    const fruitDiv = document.querySelector(
+      `.board div[data-x="${fruit[0]}"][data-y="${fruit[1]}"]`,
+    );
+    fruitDiv.classList.add("fruit");
     const headDiv = document.querySelector(
       `.board div[data-x="${head.coordinate[0]}"][data-y="${head.coordinate[1]}"]`,
     );
     headDiv.classList.add("snake");
+    headDiv.classList.remove("fruit");
     const tailDivCoordinate = [...tail.coordinate];
     switch (tail.direction) {
       case "right":
