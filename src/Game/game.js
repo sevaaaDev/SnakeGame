@@ -59,6 +59,7 @@ export class Game {
       ]);
       this.snake.changeDirection();
     }, 1000);
+    }, 500);
   }
 
   stop() {
