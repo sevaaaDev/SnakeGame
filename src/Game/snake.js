@@ -5,7 +5,7 @@ class SnakeBody {
   }
 }
 
-class Snake {
+export default class Snake {
   constructor(autoLength) {
     this.body = [];
     if (autoLength) {
@@ -59,6 +59,9 @@ class Snake {
       }
       snakeBody.coordinate = [...tmpCoordinate];
     }
+  }
+
+  changeDirection() {
     // change direction
     for (let i = this.length - 1; i > 0; i--) {
       this.body[i].direction = this.body[i - 1].direction;
@@ -69,5 +72,3 @@ class Snake {
     return this.body.length;
   }
 }
-
-module.exports = Snake;
