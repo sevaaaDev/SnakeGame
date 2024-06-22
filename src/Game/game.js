@@ -101,6 +101,7 @@ export class Game {
 
   #gameover() {
     this.isGameOver = true;
+    this.stop();
   }
 
   #isHittingWall(coordinate) {
