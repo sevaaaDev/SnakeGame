@@ -1,8 +1,8 @@
 import Snake from "./snake";
 import radio from "../pubsub";
 
-class Game {
   constructor(snake = new Snake()) {
+export class Game {
     this.snake = snake;
     this.score = 0;
     this.hiScore = 0;
@@ -120,5 +120,3 @@ class Game {
     return false;
   }
 }
-
-module.exports = Game;
