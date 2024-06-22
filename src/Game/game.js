@@ -105,8 +105,9 @@ export class Game {
   }
 
   #isHittingWall(coordinate) {
-    if (coordinate[0] > 9 || coordinate[0] < 0) return true;
+    if (coordinate[0] > 14 || coordinate[0] < 0) return true;
     if (coordinate[1] > 9 || coordinate[1] < 0) return true;
+    console.log(coordinate[0]);
     return false;
   }
 
