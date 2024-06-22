@@ -1,4 +1,6 @@
-const Snake = require("./snake");
+import Snake from "./snake";
+import radio from "../pubsub";
+
 class Game {
   constructor(snake = new Snake()) {
     this.snake = snake;
@@ -6,6 +8,7 @@ class Game {
     this.hiScore = 0;
     this.fruitCoordinate = [0, 0];
     this.isGameOver = false;
+    this.directionQueue = [];
   }
 
   #intervalId;
@@ -31,6 +34,7 @@ class Game {
   }
   start() {
     this.#intervalId = setInterval(() => {
+      this.#changeHead();
       this.snake.move();
       if (this.#isHittingWall(this.snake.body[0].coordinate)) {
         this.#gameover();
@@ -38,6 +42,7 @@ class Game {
       if (this.#isHittingItself(this.snake.body)) {
         this.#gameover();
       }
+      // check if snake ate a fruit
       if (
         this.fruitCoordinate.join() === this.snake.body[0].coordinate.join()
       ) {
@@ -45,6 +50,11 @@ class Game {
         this.incrementScore();
         this.generateFruitCoordinate(this.snake.body);
       }
+      radio.publish("SnakeMove", [
+        this.snake.body[0],
+        this.snake.body[this.snake.length - 1],
+      ]);
+      this.snake.changeDirection();
     }, 1000);
   }
 
@@ -75,6 +85,16 @@ class Game {
       this.hiScore = this.score;
     }
     this.score = 0;
+  }
+
+  addDirectionQueue(newDirection) {
+    this.directionQueue.push(newDirection);
+  }
+
+  #changeHead() {
+    if (this.directionQueue.length !== 0) {
+      this.snake.body[0].direction = this.directionQueue.shift();
+    }
   }
 
   #gameover() {
