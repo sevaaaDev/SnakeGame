@@ -1,0 +1,20 @@
+.board {
+  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(15, minmax(20px, 1fr));
+  grid-template-rows: repeat(10, minmax(20px, 1fr));
+}
+
+.board div {
+  aspect-ratio: 1/1;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.snake {
+  background-color: black;
+}
+
+.fruit {
+  background-color: red;
+}
