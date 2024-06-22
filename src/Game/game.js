@@ -1,8 +1,8 @@
 import Snake from "./snake";
 import radio from "../pubsub";
 
-  constructor(snake = new Snake()) {
 export class Game {
+  constructor(snake = new Snake(true)) {
     this.snake = snake;
     this.score = 0;
     this.hiScore = 0;
