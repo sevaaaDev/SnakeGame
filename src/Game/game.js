@@ -6,7 +6,7 @@ export class Game {
     this.snake = snake;
     this.score = 0;
     this.hiScore = 0;
-    this.fruitCoordinate = [];
+    this.fruitCoordinate = [4, 4];
     this.isGameOver = false;
     this.directionQueue = [];
   }
