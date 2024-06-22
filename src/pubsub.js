@@ -1,6 +1,6 @@
 class PubSub {
   constructor() {
-    this.listener = [];
+    this.listener = {};
   }
 
   listen(event, cb) {
