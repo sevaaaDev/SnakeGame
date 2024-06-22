@@ -96,9 +96,18 @@ export class Game {
   }
 
   #changeHead() {
-    if (this.directionQueue.length !== 0) {
-      this.snake.body[0].direction = this.directionQueue.shift();
+    if (this.directionQueue.length === 0) {
+      return;
     }
+    let newDirection = this.directionQueue.shift();
+    let oldDirection = this.snake.body[0].direction;
+    // if new direction is opposite of current direction, dont change
+    if (oldDirection === "right" && newDirection === "left") return;
+    if (oldDirection === "up" && newDirection === "down") return;
+    if (oldDirection === "down" && newDirection === "up") return;
+    if (oldDirection === "left" && newDirection === "right") return;
+
+    this.snake.body[0].direction = newDirection;
   }
 
   #gameover() {
