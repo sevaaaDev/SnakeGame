@@ -11,4 +11,29 @@ export default class Board {
       }
     }
   }
+  update([head, tail]) {
+    const headDiv = document.querySelector(
+      `.board div[data-x="${head.coordinate[0]}"][data-y="${head.coordinate[1]}"]`,
+    );
+    headDiv.classList.add("snake");
+    const tailDivCoordinate = [...tail.coordinate];
+    switch (tail.direction) {
+      case "right":
+        tailDivCoordinate[0]--;
+        break;
+      case "left":
+        tailDivCoordinate[0]++;
+        break;
+      case "up":
+        tailDivCoordinate[1]--;
+        break;
+      case "down":
+        tailDivCoordinate[1]++;
+        break;
+    }
+    const tailDivPrevous = document.querySelector(
+      `.board div[data-x="${tailDivCoordinate[0]}"][data-y="${tailDivCoordinate[1]}"]`,
+    );
+    tailDivPrevous.classList.remove("snake");
+  }
 }
