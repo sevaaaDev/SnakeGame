@@ -38,9 +38,11 @@ export class Game {
       this.snake.move();
       if (this.#isHittingWall(this.snake.body[0].coordinate)) {
         this.#gameover();
+        return;
       }
       if (this.#isHittingItself(this.snake.body)) {
         this.#gameover();
+        return;
       }
       // check if snake ate a fruit
       if (
