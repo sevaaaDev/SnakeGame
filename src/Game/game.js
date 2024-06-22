@@ -55,6 +55,7 @@ export class Game {
       radio.publish("SnakeMove", [
         this.snake.body[0],
         this.snake.body[this.snake.length - 1],
+        this.fruitCoordinate,
       ]);
       this.snake.changeDirection();
     }, 1000);
