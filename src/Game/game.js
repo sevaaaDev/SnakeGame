@@ -20,7 +20,7 @@ export class Game {
     }
     // TODO: find better solution other than looping
     while (true) {
-      let x = Math.floor(Math.random() * 10);
+      let x = Math.floor(Math.random() * 15);
       let y = Math.floor(Math.random() * 10);
       let coordinate = [x, y];
       let oldSetSize = set.size;
