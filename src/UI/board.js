@@ -12,13 +12,11 @@ export default class Board {
     }
   }
   update([head, tail, fruit]) {
+  updateFruit(fruit) {
     const fruitDiv = document.querySelector(
       `.board div[data-x="${fruit[0]}"][data-y="${fruit[1]}"]`,
     );
     fruitDiv.classList.add("fruit");
-    const headDiv = document.querySelector(
-      `.board div[data-x="${head.coordinate[0]}"][data-y="${head.coordinate[1]}"]`,
-    );
     headDiv.classList.add("snake");
     headDiv.classList.remove("fruit");
     const tailDivCoordinate = [...tail.coordinate];
