@@ -44,6 +44,10 @@ export class Game {
         this.#gameover();
         return;
       }
+      radio.publish("SnakeMove", [
+        this.snake.body[0],
+        this.snake.body[this.snake.length - 1],
+      ]);
       // check if snake ate a fruit
       if (
         this.fruitCoordinate.join() === this.snake.body[0].coordinate.join()
@@ -51,12 +55,9 @@ export class Game {
         this.snake.addLength();
         this.incrementScore();
         this.generateFruitCoordinate(this.snake.body);
+        radio.publish("FruitRender", this.fruitCoordinate);
       }
-      radio.publish("SnakeMove", [
-        this.snake.body[0],
-        this.snake.body[this.snake.length - 1],
-        this.fruitCoordinate,
-      ]);
+      // INFO: have new event "FruitRender", so it is separated from snake move
       this.snake.changeDirection();
     }, 1000);
     }, 500);
@@ -118,7 +119,6 @@ export class Game {
   #isHittingWall(coordinate) {
     if (coordinate[0] > 14 || coordinate[0] < 0) return true;
     if (coordinate[1] > 9 || coordinate[1] < 0) return true;
-    console.log(coordinate[0]);
     return false;
   }
 
