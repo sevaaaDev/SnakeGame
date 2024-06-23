@@ -34,7 +34,7 @@ export class Game {
   }
   start() {
     this.#intervalId = setInterval(() => {
-      this.#changeHead();
+      this.#changeHeadDirection();
       this.snake.move();
       if (this.#isHittingWall(this.snake.body[0].coordinate)) {
         this.#gameover();
@@ -95,7 +95,7 @@ export class Game {
     this.directionQueue.push(newDirection);
   }
 
-  #changeHead() {
+  #changeHeadDirection() {
     if (this.directionQueue.length === 0) {
       return;
     }
