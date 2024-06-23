@@ -6,7 +6,7 @@ export class Game {
     this.snake = snake;
     this.score = 0;
     this.hiScore = 0;
-    this.fruitCoordinate = [4, 4];
+    this.fruitCoordinate = [4, 4]; // TODO: randomized this
     this.isGameOver = false;
     this.directionQueue = [];
   }
@@ -33,6 +33,8 @@ export class Game {
     }
   }
   start() {
+    // WARN: figure out where and when to render this
+    radio.publish("FruitRender", this.fruitCoordinate);
     this.#intervalId = setInterval(() => {
       this.#changeHeadDirection();
       this.snake.move();
@@ -59,8 +61,7 @@ export class Game {
       }
       // INFO: have new event "FruitRender", so it is separated from snake move
       this.snake.changeDirection();
-    }, 1000);
-    }, 500);
+    }, 300);
   }
 
   stop() {
