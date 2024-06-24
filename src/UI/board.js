@@ -1,3 +1,5 @@
+import radio from "../pubsub";
+
 export default class Board {
   constructor() {}
   render() {
@@ -68,4 +70,14 @@ export default class Board {
     headDiv.classList.add("snake");
     headDiv.classList.remove("fruit");
   }
+}
+
+export function initBoard() {
+  const board = new Board();
+  radio.listen("RenderBoard", board.render);
+  radio.listen("SnakeMove", board.update);
+  radio.listen("FruitRender", board.updateFruit);
+  radio.listen("RenderMenu", board.renderMenu);
+  radio.listen("HideMenu", board.hideMenu);
+  radio.listen("ResetBoard", board.reset);
 }
