@@ -77,7 +77,7 @@ export class Game {
 
   reset() {
     this.stop();
-    this.snake = new Snake();
+    this.snake = new Snake(true);
     this.resetScore();
     this.generateFruitCoordinate(this.snake.body);
     this.isGameOver = false;
@@ -86,7 +86,6 @@ export class Game {
   restart() {
     this.stop();
     this.reset();
-    radio.publish("StartPage");
   }
 
   incrementScore() {
@@ -95,6 +94,10 @@ export class Game {
   }
 
   resetScore() {
+    this.score = 0;
+    radio.publish("UpdateScore", this.score);
+  }
+
     if (this.hiScore < this.score) {
       this.hiScore = this.score;
     }
@@ -124,9 +127,7 @@ export class Game {
   #gameover() {
     this.isGameOver = true;
     console.log("gameover");
-    this.resetScore();
-    radio.publish("UpdateHiScore", this.hiScore);
-    this.stop();
+    this.restart();
     radio.publish("RenderMenu", "Game Over");
   }
 
