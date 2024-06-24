@@ -40,6 +40,7 @@ export class Game {
   start() {
     // WARN: figure out where and when to render this
     radio.publish("HideMenu");
+    radio.publish("ResetBoard");
     radio.publish("FruitRender", this.fruitCoordinate);
     this.#intervalId = setInterval(() => {
       this.#changeHeadDirection();
