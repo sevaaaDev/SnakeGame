@@ -1,6 +1,11 @@
 import Snake from "./snake";
 import radio from "../pubsub";
 
+export function initGame() {
+  const game = new Game();
+  radio.listen("StartGame", game.start.bind(game));
+  radio.listen("ChangeDirection", game.addDirectionQueue.bind(game));
+}
 export class Game {
   constructor(snake = new Snake(true)) {
     this.snake = snake;
