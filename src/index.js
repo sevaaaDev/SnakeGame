@@ -1,28 +1,37 @@
-import { Game } from "./Game/game";
-import Board from "./UI/board";
+import { Game, initGame } from "./Game/game";
+import Board, { initBoard } from "./UI/board";
+import initScoreUI, { Score } from "./UI/score";
 import "./UI/style.css";
 import radio from "./pubsub";
 
-const board = new Board();
-board.render();
-const game = new Game();
-radio.listen("SnakeMove", board.update);
-game.start();
+initBoard();
+initScoreUI();
+initGame();
+window.addEventListener("load", (e) => {
+  radio.publish("RenderBoard");
+  radio.publish("RenderScore", [0, 0]);
+  radio.publish("RenderMenu", "SnakeGame");
+});
+document.addEventListener("click", (e) => {
+  if (e.target.matches(".menu")) {
+    radio.publish("StartGame");
+  }
+});
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowUp") {
-    game.addDirectionQueue("up");
+    radio.publish("ChangeDirection", "up");
     return;
   }
   if (e.key === "ArrowDown") {
-    game.addDirectionQueue("down");
+    radio.publish("ChangeDirection", "down");
     return;
   }
   if (e.key === "ArrowRight") {
-    game.addDirectionQueue("right");
+    radio.publish("ChangeDirection", "right");
     return;
   }
   if (e.key === "ArrowLeft") {
-    game.addDirectionQueue("left");
+    radio.publish("ChangeDirection", "left");
     return;
   }
 });
