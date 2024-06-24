@@ -34,6 +34,7 @@ export class Game {
   }
   start() {
     // WARN: figure out where and when to render this
+    radio.publish("HideMenu");
     radio.publish("FruitRender", this.fruitCoordinate);
     this.#intervalId = setInterval(() => {
       this.#changeHeadDirection();
@@ -79,11 +80,12 @@ export class Game {
   restart() {
     this.stop();
     this.reset();
-    this.start();
+    radio.publish("StartPage");
   }
 
   incrementScore() {
     this.score++;
+    radio.publish("UpdateScore", this.score);
   }
 
   resetScore() {
@@ -91,6 +93,7 @@ export class Game {
       this.hiScore = this.score;
     }
     this.score = 0;
+    radio.publish("UpdateScore", this.score);
   }
 
   addDirectionQueue(newDirection) {
@@ -114,7 +117,11 @@ export class Game {
 
   #gameover() {
     this.isGameOver = true;
+    console.log("gameover");
+    this.resetScore();
+    radio.publish("UpdateHiScore", this.hiScore);
     this.stop();
+    radio.publish("RenderMenu", "Game Over");
   }
 
   #isHittingWall(coordinate) {
