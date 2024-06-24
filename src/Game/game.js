@@ -98,11 +98,11 @@ export class Game {
     radio.publish("UpdateScore", this.score);
   }
 
+  UpdateHiScore() {
     if (this.hiScore < this.score) {
       this.hiScore = this.score;
     }
-    this.score = 0;
-    radio.publish("UpdateScore", this.score);
+    radio.publish("UpdateHiScore", this.hiScore);
   }
 
   addDirectionQueue(newDirection) {
@@ -127,6 +127,7 @@ export class Game {
   #gameover() {
     this.isGameOver = true;
     console.log("gameover");
+    this.UpdateHiScore();
     this.restart();
     radio.publish("RenderMenu", "Game Over");
   }
