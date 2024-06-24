@@ -11,6 +11,20 @@ export default class Board {
       }
     }
   }
+  renderMenu(title) {
+    const menu = document.querySelector(".menu");
+    const board = document.querySelector(".board");
+    board.classList.add("transparent");
+    menu.classList.remove("invisible");
+    const menuTitle = document.querySelector(".menu .title");
+    menuTitle.innerText = title;
+  }
+  hideMenu() {
+    const board = document.querySelector(".board");
+    const menu = document.querySelector(".menu");
+    menu.classList.add("invisible");
+    board.classList.remove("transparent");
+  }
   updateFruit(fruit) {
     const fruitDiv = document.querySelector(
       `.board div[data-x="${fruit[0]}"][data-y="${fruit[1]}"]`,
