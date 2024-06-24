@@ -68,7 +68,7 @@ export class Game {
       }
       // INFO: have new event "FruitRender", so it is separated from snake move
       this.snake.changeDirection();
-    }, 300);
+    }, 5000);
   }
 
   stop() {
@@ -106,7 +106,18 @@ export class Game {
   }
 
   addDirectionQueue(newDirection) {
+    let nextDirection = this.directionQueue[this.directionQueue.length - 1];
+    let currentDirection = this.snake.body[0].direction;
+    if (nextDirection) {
+      if (nextDirection === newDirection) return;
+    }
+    // TODO: this code below doesnt work, might need to compare both the current and next
+    if (currentDirection === "right" && newDirection === "left") return;
+    if (currentDirection === "up" && newDirection === "down") return;
+    if (currentDirection === "down" && newDirection === "up") return;
+    if (currentDirection === "left" && newDirection === "right") return;
     this.directionQueue.push(newDirection);
+    console.log(this.directionQueue.map((e) => e));
   }
 
   #changeHeadDirection() {
@@ -114,13 +125,6 @@ export class Game {
       return;
     }
     let newDirection = this.directionQueue.shift();
-    let oldDirection = this.snake.body[0].direction;
-    // if new direction is opposite of current direction, dont change
-    if (oldDirection === "right" && newDirection === "left") return;
-    if (oldDirection === "up" && newDirection === "down") return;
-    if (oldDirection === "down" && newDirection === "up") return;
-    if (oldDirection === "left" && newDirection === "right") return;
-
     this.snake.body[0].direction = newDirection;
   }
 
