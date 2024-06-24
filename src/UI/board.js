@@ -11,6 +11,16 @@ export default class Board {
       }
     }
   }
+  reset() {
+    const fruit = document.querySelector(".fruit");
+    const snakes = document.querySelectorAll(".snake");
+    if (fruit) {
+      fruit.classList.remove("fruit");
+    }
+    if (snakes) {
+      snakes.forEach((snake) => snake.classList.remove("snake"));
+    }
+  }
   renderMenu(title) {
     const menu = document.querySelector(".menu");
     const board = document.querySelector(".board");
