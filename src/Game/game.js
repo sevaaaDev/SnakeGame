@@ -80,12 +80,17 @@ export class Game {
     this.snake = new Snake(true);
     this.resetScore();
     this.generateFruitCoordinate(this.snake.body);
+    this.resetQueue();
     this.isGameOver = false;
   }
 
   restart() {
     this.stop();
     this.reset();
+  }
+
+  resetQueue() {
+    this.directionQueue = [];
   }
 
   incrementScore() {
