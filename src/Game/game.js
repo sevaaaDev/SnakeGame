@@ -106,18 +106,16 @@ export class Game {
   }
 
   addDirectionQueue(newDirection) {
-    let nextDirection = this.directionQueue[this.directionQueue.length - 1];
-    let currentDirection = this.snake.body[0].direction;
-    if (nextDirection) {
-      if (nextDirection === newDirection) return;
+    let nextDirection = this.snake.body[0].direction;
+    if (this.directionQueue.length !== 0) {
+      nextDirection = this.directionQueue[this.directionQueue.length - 1];
     }
-    // TODO: this code below doesnt work, might need to compare both the current and next
-    if (currentDirection === "right" && newDirection === "left") return;
-    if (currentDirection === "up" && newDirection === "down") return;
-    if (currentDirection === "down" && newDirection === "up") return;
-    if (currentDirection === "left" && newDirection === "right") return;
+    if (nextDirection === newDirection) return;
+    if (nextDirection === "right" && newDirection === "left") return;
+    if (nextDirection === "up" && newDirection === "down") return;
+    if (nextDirection === "down" && newDirection === "up") return;
+    if (nextDirection === "left" && newDirection === "right") return;
     this.directionQueue.push(newDirection);
-    console.log(this.directionQueue.map((e) => e));
   }
 
   #changeHeadDirection() {
