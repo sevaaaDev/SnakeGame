@@ -1,6 +1,6 @@
-import { Game, initGame } from "./Game/game";
-import Board, { initBoard } from "./UI/board";
-import initScoreUI, { Score } from "./UI/score";
+import { initGame } from "./Game/game";
+import { initBoard } from "./UI/board";
+import initScoreUI from "./UI/score";
 import "./UI/style.css";
 import radio from "./pubsub";
 
@@ -8,9 +8,8 @@ initBoard();
 initScoreUI();
 initGame();
 window.addEventListener("load", (e) => {
-  radio.publish("RenderBoard");
-  radio.publish("RenderScore", [0, 0]);
-  radio.publish("RenderMenu", "SnakeGame");
+  radio.publish("InitRender", [0, 0]);
+  radio.publish("RenderMenu", ["SnakeGame", "Start"]);
 });
 document.addEventListener("click", (e) => {
   if (e.target.matches(".menu")) {

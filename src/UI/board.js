@@ -76,7 +76,7 @@ export default class Board {
 
 export function initBoard() {
   const board = new Board();
-  radio.listen("RenderBoard", board.render);
+  radio.listen("InitRender", board.render);
   radio.listen("SnakeMove", board.update);
   radio.listen("FruitRender", board.updateFruit);
   radio.listen("RenderMenu", board.renderMenu);

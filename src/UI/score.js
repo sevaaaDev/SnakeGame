@@ -29,5 +29,5 @@ export default function initScoreUI() {
   const scoreUi = new Score();
   radio.listen("UpdateScore", scoreUi.updateScore);
   radio.listen("UpdateHiScore", scoreUi.updateHiScore);
-  radio.listen("RenderScore", scoreUi.render);
+  radio.listen("InitRender", scoreUi.render);
 }
