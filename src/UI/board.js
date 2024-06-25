@@ -23,13 +23,15 @@ export default class Board {
       snakes.forEach((snake) => snake.classList.remove("snake"));
     }
   }
-  renderMenu(title) {
+  renderMenu([title, text]) {
     const menu = document.querySelector(".menu");
     const board = document.querySelector(".board");
     board.classList.add("transparent");
     menu.classList.remove("invisible");
     const menuTitle = document.querySelector(".menu .title");
     menuTitle.innerText = title;
+    const menuBlinkingText = document.querySelector(".menu .blinking-text");
+    menuBlinkingText.innerText = text;
   }
   hideMenu() {
     const board = document.querySelector(".board");

@@ -136,7 +136,7 @@ export class Game {
     console.log("gameover");
     this.UpdateHiScore();
     this.restart();
-    radio.publish("RenderMenu", "Game Over");
+    radio.publish("RenderMenu", ["Game Over", "Play again"]);
   }
 
   #isHittingWall(coordinate) {
