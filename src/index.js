@@ -14,7 +14,7 @@ window.addEventListener("load", (e) => {
   radio.publish("RenderMenu", ["SnakeGame", "Start"]);
 });
 document.addEventListener("click", (e) => {
-  if (e.target.matches(".menu")) {
+  if (e.target.closest(".menu")) {
     radio.publish("StartGame");
   }
 });
