@@ -68,7 +68,7 @@ export class Game {
       }
       // INFO: have new event "FruitRender", so it is separated from snake move
       this.snake.changeDirection();
-    }, 5000);
+    }, 300);
   }
 
   stop() {
