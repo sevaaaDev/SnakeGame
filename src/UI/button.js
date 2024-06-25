@@ -15,8 +15,9 @@ class Button {
   }
 
   handler(e) {
-    if (e.target.matches(".button")) {
-      radio.publish("ChangeDirection", e.target.dataset.direction);
+    let button = e.target.closest(".button");
+    if (button) {
+      radio.publish("ChangeDirection", button.dataset.direction);
     }
   }
 }
