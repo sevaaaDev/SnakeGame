@@ -78,12 +78,23 @@ body {
 
 .button-container {
   display: grid;
+  width: 50%;
+  margin-inline: auto;
+  margin-block-start: 4rem;
+  gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
 }
 
 .button {
   aspect-ratio: 1;
+  border: 2px solid var(--clr-secondary);
+  background-color: var(--clr-primary);
+}
+
+.button img {
+  line-height: 0;
+  width: 48px;
 }
 
 .btn-up {
