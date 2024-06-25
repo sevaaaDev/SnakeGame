@@ -3,6 +3,7 @@ import radio from "../pubsub";
 
 export function initGame() {
   const game = new Game();
+  radio.listen("InitRender", game.getHiScoreFromLocalStorage.bind(game));
   radio.listen("StartGame", game.start.bind(game));
   radio.listen("ChangeDirection", game.addDirectionQueue.bind(game));
 }
@@ -103,11 +104,21 @@ export class Game {
     radio.publish("UpdateScore", this.score);
   }
 
+  storeHiScoreToLocalStorage() {
+    localStorage.setItem("HighScore", this.hiScore);
+  }
+
+  getHiScoreFromLocalStorage() {
+    this.hiScore = +localStorage.getItem("HighScore");
+    radio.publish("UpdateHiScore", this.hiScore);
+  }
+
   UpdateHiScore() {
     if (this.hiScore < this.score) {
       this.hiScore = this.score;
+      radio.publish("UpdateHiScore", this.hiScore);
+      this.storeHiScoreToLocalStorage();
     }
-    radio.publish("UpdateHiScore", this.hiScore);
   }
 
   addDirectionQueue(newDirection) {
