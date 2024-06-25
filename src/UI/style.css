@@ -13,10 +13,11 @@ body {
 .container {
   width: min(90%, 500px);
   margin-inline: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100dvh;
+  padding-top: 10rem;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: center;*/
+  /*min-height: 100dvh;*/
 }
 .board {
   width: max(300px, 100%);
@@ -57,10 +58,51 @@ body {
   z-index: 1;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
 }
 
-.menu .title {
+.menu .title,
+.menu .blinking-text {
   text-align: center;
+}
+
+.blinking-text {
+  animation-name: blink;
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.button {
+  aspect-ratio: 1;
+}
+
+.btn-up {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.btn-down {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+.btn-right {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+
+.btn-left {
+  grid-row: 2/3;
 }
 
 .invisible {
@@ -70,4 +112,10 @@ body {
 .transparent .snake,
 .transparent .fruit {
   opacity: 0.2;
+}
+
+@keyframes blink {
+  to {
+    transform: scale(1.2);
+  }
 }
