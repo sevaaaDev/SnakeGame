@@ -56,6 +56,18 @@ body {
 
 .fruit {
   background-color: red;
+  border-radius: 8px;
+  scale: 0.6;
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(315deg);
+  }
 }
 
 .score-wrapper {
