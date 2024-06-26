@@ -1,3 +1,12 @@
+/* luckiest-guy-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Luckiest Guy";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/luckiest-guy-v22-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -6,10 +15,13 @@
 :root {
   --clr-primary: hsl(267, 75%, 81%);
   --clr-secondary: #1e1e2e;
+  --font: "Luckiest Guy";
 }
 body {
   background-color: var(--clr-primary);
+  font-family: var(--font);
 }
+
 .container {
   width: min(90%, 500px);
   margin-inline: auto;
@@ -67,6 +79,10 @@ body {
 .menu .title,
 .menu .blinking-text {
   text-align: center;
+}
+
+.menu .title {
+  font-size: 3rem;
 }
 
 .blinking-text {
