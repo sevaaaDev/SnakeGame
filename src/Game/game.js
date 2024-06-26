@@ -66,6 +66,7 @@ export class Game {
         this.incrementScore();
         this.generateFruitCoordinate(this.snake.body);
         radio.publish("FruitRender", this.fruitCoordinate);
+        radio.publish("EatFruit");
       }
       // INFO: have new event "FruitRender", so it is separated from snake move
       this.snake.changeDirection();
@@ -144,9 +145,9 @@ export class Game {
 
   #gameover() {
     this.isGameOver = true;
-    console.log("gameover");
     this.UpdateHiScore();
     this.restart();
+    radio.publish("Gameover");
     radio.publish("RenderMenu", ["Game Over", "Play again"]);
   }
 

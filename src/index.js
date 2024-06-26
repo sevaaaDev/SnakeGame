@@ -3,12 +3,14 @@ import { initBoard } from "./UI/board";
 import initButton from "./UI/button";
 import initScoreUI from "./UI/score";
 import "./UI/style.css";
+import initAudio from "./audio";
 import radio from "./pubsub";
 
 initBoard();
 initScoreUI();
 initGame();
 initButton();
+initAudio();
 window.addEventListener("load", (e) => {
   radio.publish("InitRender", [0, 0]);
   radio.publish("RenderMenu", ["SnakeGame", "Start"]);
