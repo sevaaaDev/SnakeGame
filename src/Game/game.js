@@ -39,7 +39,6 @@ export class Game {
     }
   }
   start() {
-    // WARN: figure out where and when to render this
     radio.publish("HideMenu");
     radio.publish("ResetBoard");
     radio.publish("FruitRender", this.fruitCoordinate);
@@ -66,6 +65,7 @@ export class Game {
         this.incrementScore();
         this.generateFruitCoordinate(this.snake.body);
         radio.publish("FruitRender", this.fruitCoordinate);
+        // WARN: sometime the sfx doesnt get played
         radio.publish("EatFruit");
       }
       // INFO: have new event "FruitRender", so it is separated from snake move
