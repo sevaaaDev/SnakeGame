@@ -12,6 +12,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 :root {
   --clr-primary: hsl(267, 75%, 81%);
   --clr-secondary: #1e1e2e;
@@ -97,10 +98,10 @@ body {
 
 .button-container {
   display: grid;
-  width: 50%;
+  width: 55%;
   margin-inline: auto;
   margin-block-start: 4rem;
-  gap: 1rem;
+  gap: 0.5rem;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
 }
@@ -109,11 +110,20 @@ body {
   aspect-ratio: 1;
   border: 2px solid var(--clr-secondary);
   background-color: var(--clr-primary);
+  line-height: 0;
 }
 
 .button img {
-  line-height: 0;
-  width: 48px;
+  width: 100%;
+  filter: invert(0);
+}
+
+.button:active {
+  background-color: var(--clr-secondary);
+  transform: scale(0.9);
+}
+.button img:active {
+  filter: invert(0.5) sepia(1) hue-rotate(267deg);
 }
 
 .btn-up {
