@@ -1,0 +1,174 @@
+/* luckiest-guy-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Luckiest Guy";
+  font-style: normal;
+  font-weight: 400;
+  src: url(863b32af5495122d229c.woff2) format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-primary: hsl(267, 75%, 81%);
+  --clr-secondary: #1e1e2e;
+  --font: "Luckiest Guy";
+}
+
+body {
+  background-color: var(--clr-primary);
+  font-family: var(--font);
+}
+
+.container {
+  width: min(90%, 500px);
+  margin-inline: auto;
+  padding-top: 10rem;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: center;*/
+  /*min-height: 100dvh;*/
+}
+.board {
+  width: max(300px, 100%);
+  aspect-ratio: 3/2;
+  display: grid;
+  grid-template-columns: repeat(15, minmax(20px, 1fr));
+  grid-template-rows: repeat(10, minmax(20px, 1fr));
+  border: 4px solid var(--clr-secondary);
+  margin-inline: auto;
+  position: relative;
+  padding: 4px;
+}
+
+.board div:not(.menu) {
+  aspect-ratio: 1/1;
+}
+
+.snake {
+  background-color: var(--clr-secondary);
+  border-radius: 6px;
+}
+
+.fruit {
+  background-color: red;
+  border-radius: 8px;
+  scale: 0.6;
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(315deg);
+  }
+}
+
+.score-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.score-wrapper * {
+  font-size: 1.5rem;
+}
+
+.menu {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.menu .title,
+.menu .blinking-text {
+  text-align: center;
+}
+
+.menu .title {
+  font-size: 3rem;
+}
+
+/* its not blinking actually */
+.blinking-text {
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+
+.button-container {
+  display: grid;
+  width: 55%;
+  margin-inline: auto;
+  margin-block-start: 4rem;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.button {
+  aspect-ratio: 1;
+  border: 2px solid var(--clr-secondary);
+  background-color: var(--clr-primary);
+  line-height: 0;
+}
+
+.button img {
+  width: 100%;
+  filter: invert(0);
+}
+
+.button:active {
+  background-color: var(--clr-secondary);
+  transform: scale(0.9);
+}
+.button img:active {
+  filter: invert(0.5) sepia(1) hue-rotate(267deg);
+}
+
+.btn-up {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.btn-down {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+.btn-right {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+
+.btn-left {
+  grid-row: 2/3;
+}
+
+.invisible {
+  display: none;
+}
+
+.transparent .snake,
+.transparent .fruit {
+  opacity: 0.2;
+}
+
+@keyframes blink {
+  to {
+    transform: scale(1.4);
+  }
+}
+
