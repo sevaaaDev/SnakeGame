@@ -147,8 +147,16 @@ export class Game {
     this.isGameOver = true;
     this.UpdateHiScore();
     this.restart();
+    if (this.snake.length === 150) {
+      this.#win();
+      return;
+    }
     radio.publish("Gameover");
     radio.publish("RenderMenu", ["Game Over", "Play again"]);
+  }
+
+  #win() {
+    radio.publish("RenderMenu", ["You Won", "Play again"]);
   }
 
   #isHittingWall(coordinate) {
